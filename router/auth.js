@@ -12,7 +12,7 @@ const Product = require("../userSchema/productsSchema");
 
 const productStorage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "./public/productImage/");
+    cb(null, "public/productImage/");
   },
   filename: function (req, file, cb) {
     cb(null, Date.now() + "epi" + "-" + file.originalname);
@@ -21,7 +21,7 @@ const productStorage = multer.diskStorage({
 
 const editproductStorage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "./public/productImage/");
+    cb(null, "public/productImage/");
   },
   filename: function (req, file, cb) {
     cb(null, Date.now() + "pi" + "-" + file.originalname);
