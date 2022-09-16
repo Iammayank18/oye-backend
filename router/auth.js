@@ -129,8 +129,8 @@ router.post("/api/profile", authenticated, (req, res) => {
   });
 });
 
-router.post("/api/add/product", pupload.single("image"), async (req, res) => {
-  const files = req.file;
+router.post("/api/add/product", async (req, res) => {
+  // const files = req.file;
   const data = req.body;
   // console.log(data);
   const product = new Product({
@@ -138,7 +138,7 @@ router.post("/api/add/product", pupload.single("image"), async (req, res) => {
     price: data.price,
     amount: data.amount,
     category: data.category,
-    image: files.filename,
+    image: data.image,
   });
   product.save().then((product) => {
     // console.log(product);
