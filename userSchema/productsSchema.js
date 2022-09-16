@@ -18,7 +18,8 @@ const ProductSchema = new mongoose.Schema({
   },
   image: {
     type: String,
-    required: true,
+    // required: true,
+    default: "../public/productImage/9.jpeg",
   },
 });
 ProductSchema.plugin(AutoIncrement, { id: "order_seq", inc_field: "id" });
