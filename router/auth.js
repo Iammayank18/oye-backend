@@ -12,7 +12,7 @@ const Product = require("../userSchema/productsSchema");
 
 const productStorage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "public/productImage/");
+    cb(null, "./public/productImage/");
   },
   filename: function (req, file, cb) {
     cb(null, Date.now() + "epi" + "-" + file.originalname);
@@ -21,7 +21,7 @@ const productStorage = multer.diskStorage({
 
 const editproductStorage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "public/productImage/");
+    cb(null, "./public/productImage/");
   },
   filename: function (req, file, cb) {
     cb(null, Date.now() + "pi" + "-" + file.originalname);
@@ -129,8 +129,8 @@ router.post("/api/profile", authenticated, (req, res) => {
   });
 });
 
-router.post("/api/add/product", async (req, res) => {
-  // const files = req.file;
+router.post("/api/add/product", pupload.single("image"), async (req, res) => {
+  const files = req.file;
   const data = req.body;
   // console.log(data);
   const product = new Product({
@@ -138,7 +138,7 @@ router.post("/api/add/product", async (req, res) => {
     price: data.price,
     amount: data.amount,
     category: data.category,
-    image: data.image,
+    image: files.filename,
   });
   product.save().then((product) => {
     // console.log(product);
